@@ -1,10 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'wru_gradle'
-    }
-
-  }
+  agent any
   stages {
     stage('listar') {
       steps {
@@ -14,6 +9,11 @@ pipeline {
     stage('test') {
       steps {
         sh 'ls'
+      }
+    }
+    stage('post') {
+      steps {
+        sh 'touch /build/reports/tests/test/*.html'
       }
     }
   }
