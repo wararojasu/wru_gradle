@@ -1,8 +1,7 @@
 pipeline {
   agent {
     docker {
-      image 'wru_gradle'
-      args ':latest'
+      image 'wru_gradle:latest'
     }
 
   }
