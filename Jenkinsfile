@@ -6,9 +6,9 @@ pipeline {
 
   }
   stages {
-    stage('example') {
+    stage('listar') {
       steps {
-        sh 'image \'wru_gradle:latest\''
+        sh 'ls -l'
       }
     }
   }
