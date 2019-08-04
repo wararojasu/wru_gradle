@@ -7,7 +7,7 @@ pipeline {
   }
 
   stages{
-     stage('Build and Test WRU'){
+     stage('Build and Test'){
 
 		  stages {
 
