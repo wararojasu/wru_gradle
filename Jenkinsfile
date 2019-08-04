@@ -6,6 +6,9 @@ pipeline {
     buildDiscarder(logRotator(numToKeepStr: '4'))
   }
 
+  stages{
+     stage('Build and Test WRU'){
+
   stages {
 
     stage('List files in repo on Unix Slave') {
@@ -32,7 +35,11 @@ pipeline {
       }
     }
 
-    stage('Build') {
+    stage('Build') { 
+	    steps {      
+			echo "Listando WRU"    
+			sh 'ls -l'
+        }
 		steps {
 			sh './gradlew build'
 		}
@@ -43,7 +50,20 @@ pipeline {
 			sh './gradlew test' 
 		}
     }
-
+	
+  }
+  post {
+	always {
+		sh 'touch build/reports/tests/test/*.html'
+		junit 'build/reports/tests/test/*.html'
+	}
+	success {
+		archiveArtifacts artifacts: 'build/**/*.jar', fingerprint: true
+   }
+  }
+  
+	 
+	 }
   }
 
   post {
