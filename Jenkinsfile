@@ -55,7 +55,7 @@ pipeline {
 		junit 'build/reports/tests/test/index.html'
 	}
 	success {
-		archiveArtifacts artifacts: 'build/**/*.jar', fingerprint: true
+		archiveArtifacts artifacts: 'build/reports/tests/test/index.html', fingerprint: true
    }
   }
   
