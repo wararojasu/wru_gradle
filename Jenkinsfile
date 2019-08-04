@@ -51,8 +51,8 @@ pipeline {
   }
   post {
 	always {
-		sh 'touch build/reports/tests/test/*.html'
-		junit 'build/reports/tests/test/*.html'
+		sh 'touch build/reports/tests/test/index.html'
+		junit 'build/reports/tests/test/index.html'
 	}
 	success {
 		archiveArtifacts artifacts: 'build/**/*.jar', fingerprint: true
