@@ -32,11 +32,7 @@ pipeline {
       }
     }
 
-    stage('Build') { 
-	    steps {      
-			echo "Listando WRU"    
-			sh 'ls -l'
-        }
+    stage('Build') {
 		steps {
 			sh './gradlew build'
 		}
