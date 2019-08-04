@@ -50,13 +50,9 @@ pipeline {
 	
   }
   post {
-	always {
-		sh 'touch build/reports/tests/test/index.html'
-		junit 'build/reports/tests/test/index.html'
-	}
-	success {
-		archiveArtifacts artifacts: 'build/reports/tests/test/index.html', fingerprint: true
-   }
+        always {
+            junit 'build/reports/**/*.xml'
+        }
   }
   
 	 
