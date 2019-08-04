@@ -31,5 +31,33 @@ pipeline {
         bat 'dir'
       }
     }
+
+    stage('Build') { 
+	    steps {      
+			echo "Listando WRU"    
+			sh 'ls -l'
+        }
+		steps {
+			sh './gradlew build'
+		}
+    }
+	
+    stage('Test') { 
+		steps {
+			sh './gradlew test' 
+		}
+    }
+
+    stage('Deploy') { 
+		steps { 
+		}
+    }
+	
+  }
+
+  post {
+    always {
+      deleteDir()
+    }
   }
 }
