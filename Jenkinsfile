@@ -1,20 +1,41 @@
 pipeline {
+
   agent any
+
+  options {
+    buildDiscarder(logRotator(numToKeepStr: '4'))
+  }
+
   stages {
-    stage('listar') {
-      steps {
+
+    stage('List files in repo on Unix Slave') {
+
+      when {
+        expression { isUnix() == true }
+      }
+
+      steps {      
+        echo "Workspace location: ${env.WORKSPACE}"    
         sh 'ls -l'
       }
     }
-    stage('test') {
-      steps {
-        sh 'ls'
+
+    stage('List files in repo on Windows Slave') {
+
+      when {
+        expression { isUnix() == false }
+      }
+
+      steps {      
+        echo "Workspace location: ${env.WORKSPACE}"  
+        bat 'dir'
       }
     }
-    stage('post') {
-      steps {
-        sh 'touch /build/reports/tests/test/*.html'
-      }
+  }
+
+  post {
+    always {
+      deleteDir()
     }
   }
 }
