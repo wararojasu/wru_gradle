@@ -50,7 +50,7 @@ sourceSets {
 
 test {
     reports {
-        junitXml.enabled = false
-        html.enabled = true
+        junitXml.enabled = true
+        html.enabled = false
     }               
 }
