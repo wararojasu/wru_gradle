@@ -9,54 +9,31 @@ pipeline {
   stages{
      stage('Build and Test WRU'){
 
-  stages {
+		  stages {
 
-    stage('List files in repo on Unix Slave') {
+			stage('Build') { 
 
-      when {
-        expression { isUnix() == true }
-      }
-
-      steps {      
-        echo "Workspace location: ${env.WORKSPACE}"    
-        sh 'ls -l'
-      }
-    }
-
-    stage('List files in repo on Windows Slave') {
-
-      when {
-        expression { isUnix() == false }
-      }
-
-      steps {      
-        echo "Workspace location: ${env.WORKSPACE}"  
-        bat 'dir'
-      }
-    }
-
-    stage('Build') { 
-
-		steps {
-			sh './gradlew build'
-		}
-    }
-	
-    stage('Test') { 
-		steps {
-			sh './gradlew test' 
-		}
-    }
-	
-  }
-  post {
-        always {
-            junit 'build/test-results/test/*.xml'
-	     archiveArtifacts artifacts: 'build/libs/*.war', fingerprint: true
-        }
-  }
-  
-	 
+				steps {
+					sh './gradlew build'
+				}
+			}
+			
+			stage('Test') { 
+				steps {
+					sh './gradlew test' 
+				}
+			}
+			
+		  }
+		  
+		  post {
+		  
+			always {
+				junit 'build/test-results/test/*.xml'
+				archiveArtifacts artifacts: 'build/libs/*.war', fingerprint: true
+			}
+			
+		  }
 	 }
   }
   post {
