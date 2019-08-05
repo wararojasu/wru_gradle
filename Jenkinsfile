@@ -62,6 +62,11 @@ pipeline {
 			    }
 	        }
 	      }
+	      stage('Deploy for QA') { 
+	         steps {
+	               sh 'docker run --name container-qa -p 8787:8080 -i -t wru_gradle:first' 
+	         }
+	      }		  
        }
     }	
   }
