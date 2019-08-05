@@ -78,11 +78,7 @@ pipeline {
 	   stages {
           stage('Checkout external gui test ...') {
             steps {
-                git branch: 'master',
-                    credentialsId: '4313bc69fc29a41ebb576daf4c52b98670d938a0 ',
-                    url: 'git@github.com:wararojasu/wru_gradle_gui_test.git'					
-    
-                sh "ls -lat"
+				sh 'git clone -b develop https://github.com/wararojasu/wru_gradle_gui_test.git' 
             }
           }	   
 
