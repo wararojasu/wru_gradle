@@ -73,6 +73,20 @@ pipeline {
 	         }
 	      }		  
        }
-    }	
+    }
+	stage('Build and Test GUI automation ...'){
+	   stages {
+          stage('Checkout external gui test ...') {
+            steps {
+                git branch: 'master',
+                    credentialsId: '3195b05831abe54f71d4aacfeb6fea33dd9c1b62',
+                    url: 'git@github.com:wararojasu/wru_gradle_gui_test.git'					
+    
+                sh "ls -lat"
+            }
+          }	   
+
+       }
+    }
   }
 }
