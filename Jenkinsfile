@@ -43,7 +43,7 @@ pipeline {
 	        steps {
 			    script {
 				   docker.withRegistry( '', 'docker-hub-credentials' ) {
-				      sh "docker login -u wararojasu -p AWT03_*123w"
+				      sh "docker login -u ${USERNAME} -p ${PASSWORD}"
 				      dockerImage.push()
 				   }				   
 			    }
@@ -51,5 +51,5 @@ pipeline {
 	      }
        }
     }	
-  } 
-}
+  }
+} 
