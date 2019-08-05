@@ -43,7 +43,7 @@ pipeline {
 	        steps {
 			    script {
 				   docker.withRegistry( '', 'docker-hub-credentials' ) {
-				      sh 'docker login --username ${USERNAME} --password ${PASSWORD}'
+				      sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
 				      dockerImage.push()
 				   }				   
 			    }
