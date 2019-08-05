@@ -78,7 +78,7 @@ pipeline {
 	   stages {
           stage('Checkout external gui test ...') {
             steps {
-				sh 'git clone -b develop https://github.com/wararojasu/wru_gradle_gui_test.git' 
+				sh 'git clone -b master https://github.com/wararojasu/wru_gradle_gui_test.git' 
             }
           }	   
 
