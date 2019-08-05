@@ -49,6 +49,20 @@ pipeline {
 	        }
 	      }
        }
+    }
+	stage('Pull and Deploy ...'){
+	   stages {
+	      stage('Pull ..') { 
+	        steps {
+			    script {
+				   docker.withRegistry('', 'docker-hub-credentials') {
+					  dockerImage = docker.image('wararojasu/wru_gradle:first')
+					  dockerImage.pull()
+				  }				   
+			    }
+	        }
+	      }
+       }
     }	
   }
 }
