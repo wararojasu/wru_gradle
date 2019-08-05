@@ -81,7 +81,17 @@ pipeline {
 				sh 'git clone -b master https://github.com/wararojasu/wru_gradle_gui_test.git' 
             }
           }	   
-
+	      stage('Build GUI tes') { 
+	         steps {
+			    sh 'cd wru_gradle_gui_test'
+	            sh './gradlew build'
+	         }
+	      }
+	      stage('Test GUI test') { 
+	         steps {
+	               sh './gradlew test' 
+	            }
+	      }
        }
     }
   }
