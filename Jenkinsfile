@@ -79,7 +79,7 @@ pipeline {
           stage('Checkout external gui test ...') {
             steps {
                 git branch: 'master',
-                    credentialsId: '3195b05831abe54f71d4aacfeb6fea33dd9c1b62',
+                    credentialsId: '4313bc69fc29a41ebb576daf4c52b98670d938a0 ',
                     url: 'git@github.com:wararojasu/wru_gradle_gui_test.git'					
     
                 sh "ls -lat"
