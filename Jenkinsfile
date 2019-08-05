@@ -42,18 +42,14 @@ pipeline {
 	      stage('Public ..') { 
 	        steps {
 			    script {
-				   docker.withRegistry( 'https://hub.docker.com', registryCredential ) {
+				   docker.withRegistry( '', 'docker-hub-credentials' ) {
+				      sh "docker login -u wararojasu -p AWT03_*123w"
 				      dockerImage.push()
-				   }
+				   }				   
 			    }
 	        }
 	      }
        }
     }	
-  }
-  post {
-     always {
-        deleteDir()
-     }
   } 
-} 
+}
