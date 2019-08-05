@@ -62,16 +62,18 @@ pipeline {
 			    }
 	        }
 	      }
-	      stage('Deploy for QA') { 
-	         steps {
-	               sh 'docker run --name container-qa -d -p 8787:8080 wararojasu/wru_gradle:first' 
-	         }
-	      }
-	      stage('Deploy for Dev') { 
-	         steps {
-	               sh 'docker run --name container-dev -d -p 8785:8080 wararojasu/wru_gradle:first' 
-	         }
-	      }		  
+		  stage('run-parallel-branches') {
+		    steps {
+			  parallel(
+			    Qa: {
+				  sh 'docker run --name container-qa -d -p 8787:8080 wararojasu/wru_gradle:first'
+			    },
+			    Dev: {
+				  sh 'docker run --name container-dev -d -p 8785:8080 wararojasu/wru_gradle:first' 
+			    }
+			  )
+		    }
+		  }		  
        }
     }
 	stage('Build and Test GUI automation ...'){
