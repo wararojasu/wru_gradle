@@ -101,7 +101,7 @@ pipeline {
           }
 		 success {
 		  sh 'echo "This will run only if successful"'
-		  emailext body: 'A Test EMail', subject: 'Test', to: 'wara.rojas.u@gmail.com'
+		  emailext attachmentsPattern: 'build/reports/tests/test/index.html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", to: 'wara.rojas.u@gmail.com'
 		 }
 		 failure {
 		  sh 'echo "This will run only if failed"'
@@ -113,7 +113,7 @@ pipeline {
 		  sh 'echo "This will run only if the state of the Pipeline has changed"'
 		  sh 'echo "For example, the Pipeline was previously failing but is now successful"'
 		  sh 'echo "... or the other way around :)"'
-		 }		  
+		 }			  
        }	   
     }
   }
