@@ -41,8 +41,6 @@ pipeline {
 		 }		 
 		 changed {
 		  sh 'echo "This will run only if the state of the Pipeline has changed"'
-		  sh 'echo "For example, the Pipeline was previously failing but is now successful"'
-		  sh 'echo "... or the other way around :)"'
           emailext attachmentsPattern: 'build/reports/tests/test/index.html', mimeType: 'text/html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Changed", to: 'wara.rojas.u@gmail.com'		  
 		 }		  
        }
