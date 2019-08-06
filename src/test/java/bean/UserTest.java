@@ -25,7 +25,7 @@ public class UserTest {
    public void testVerifyuserNoMoreThanSixChars() throws Exception {
       boolean expectedValue = true;
       UserBean app=new UserBean();
-      boolean actualValue=app.userNoMoreThanSixChars("Teresa");
+      boolean actualValue=app.userNoMoreThanSixChars("Teresasa");
       assertEquals(expectedValue, actualValue);
    }   
 }
