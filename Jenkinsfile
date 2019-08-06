@@ -1,7 +1,6 @@
 pipeline {
   environment {
     registry = "wararojasu/wru_gradle:first"
-    registryCredential = 'AWT03_*123w'
     dockerImage = ''
   }
   
@@ -30,7 +29,7 @@ pipeline {
           }
 		 success {
 		  sh 'echo "This will run only if successful"'
-		  emailext attachmentsPattern: 'build/reports/tests/test/index.html', mimeType: 'text/html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", to: 'wara.rojas.u@gmail.com'
+		  
 		 }
 		 failure {
 		  sh 'echo "This will run only if failed"'
@@ -39,11 +38,7 @@ pipeline {
 		 unstable {
 		  sh 'echo "This will run only if the run was marked as unstable"'
           emailext attachmentsPattern: 'build/reports/tests/test/index.html', mimeType: 'text/html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Unstable", to: 'wara.rojas.u@gmail.com'		  
-		 }
-		fixed {
-		  sh 'echo "This will run only if failed was fixed"'
-          emailext attachmentsPattern: 'build/reports/tests/test/index.html', mimeType: 'text/html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Fixed", to: 'wara.rojas.u@gmail.com'
-		}		 
+		 }		 
 		 changed {
 		  sh 'echo "This will run only if the state of the Pipeline has changed"'
 		  sh 'echo "For example, the Pipeline was previously failing but is now successful"'
@@ -123,7 +118,7 @@ pipeline {
           }
 		 success {
 		  sh 'echo "This will run only if successful"'
-		  emailext attachmentsPattern: 'build/reports/tests/test/index.html', mimeType: 'text/html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", to: 'wara.rojas.u@gmail.com'
+		  
 		 }
 		 failure {
 		  sh 'echo "This will run only if failed"'
@@ -131,12 +126,12 @@ pipeline {
 		 }
 		 unstable {
 		  sh 'echo "This will run only if the run was marked as unstable"'
-		 }
+          emailext attachmentsPattern: 'build/reports/tests/test/index.html', mimeType: 'text/html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Unstable", to: 'wara.rojas.u@gmail.com'		  
+		 }		 
 		 changed {
 		  sh 'echo "This will run only if the state of the Pipeline has changed"'
-		  sh 'echo "For example, the Pipeline was previously failing but is now successful"'
-		  sh 'echo "... or the other way around :)"'
-		 }			  
+          emailext attachmentsPattern: 'build/reports/tests/test/index.html', mimeType: 'text/html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Changed", to: 'wara.rojas.u@gmail.com'		  
+		 }		  
        }	   
     }
   }
