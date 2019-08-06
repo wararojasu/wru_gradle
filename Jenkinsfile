@@ -101,7 +101,7 @@ pipeline {
           }
 		 success {
 		  sh 'echo "This will run only if successful"'
-		  emailext attachmentsPattern: 'build/reports/tests/test/index.html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", to: 'wara.rojas.u@gmail.com'
+		  emailext attachmentsPattern: 'build/reports/tests/test/index.html', mimeType: 'text/html', body: '''${SCRIPT, template="groovy-html.template"}''', subject: "${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - Successful", to: 'wara.rojas.u@gmail.com'
 		 }
 		 failure {
 		  sh 'echo "This will run only if failed"'
